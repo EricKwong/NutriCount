@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ui.router'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -29,11 +29,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+  .state('login', {
+    url: '/',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  })
+
+  .state('diet', {
+    url: '/diet',
+    templateUrl: 'templates/diet.html',
+    controller: 'DietCtrl',
+    resolve: {
+      username: function (Username) {
+        return Username.getUsername();
+      }
+    }
+  })
   // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: "/tab",
+
+  .state('tab', {
+    url: '/tab',
     abstract: true,
-    templateUrl: "templates/tabs.html"
+    templateUrl: 'templates/tabs.html'
   })
 
   // Each tab has its own nav history stack:
@@ -42,8 +59,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/dash',
     views: {
       'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+        templateUrl: 'templates/tab-dash.html'
       }
     }
   })
@@ -59,6 +75,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/');
 
 });

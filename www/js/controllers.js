@@ -1,6 +1,36 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('LoginCtrl', function($scope, $state, Username) {
+  $scope.username = '';
+  $scope.checkUser = function(username) {
+    Username.setUsername(username);
+    // if (user exists) {
+    //   // get user stats
+    //   $state.go('tab.dash');
+    // } else {
+      $state.go('diet');
+    // }
+  };
+})
+
+.controller('DietCtrl', function($scope, $state, username) {
+  $scope.userData = {
+    username: username,
+    dietId: null
+  };
+
+  $scope.goToDash = function() {
+    $state.go('tab.dash');
+  };
+
+  $scope.updateDiet = function(id) {
+    $scope.userData.dietId = id;
+    // Create User in Database with $scope.userData
+    // created user callback
+    // navigate to stats page with template
+    $scope.goToDash();
+  };
+})
 
 .controller('CameraCtrl', function($scope, Camera) {
   $scope.getPhoto = function() {
@@ -16,5 +46,5 @@ angular.module('starter.controllers', [])
     }, function(err) {
       console.err(err);
     });
-  }
+  };
 });

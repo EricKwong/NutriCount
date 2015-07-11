@@ -16,4 +16,16 @@ angular.module('starter.services', [])
       return q.promise;
     }
   }
-}]);
+}])
+
+.factory('Username', function($q) {
+  var username;
+  return {
+    getUsername: function() {
+      return username;
+    },
+    setUsername: function(name) {
+      username = name;
+    }
+  }
+});
