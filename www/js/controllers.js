@@ -6,7 +6,7 @@ angular.module('starter.controllers', [])
     Username.setUsername(username);
     // if (user exists) {
     //   // get user stats
-    //   $state.go('tab.dash');
+    //   $state.go('tab.status');
     // } else {
       $state.go('diet');
     // }
@@ -19,8 +19,8 @@ angular.module('starter.controllers', [])
     dietId: null
   };
 
-  $scope.goToDash = function() {
-    $state.go('tab.dash');
+  $scope.goToStatus = function() {
+    $state.go('tab.status');
   };
 
   $scope.updateDiet = function(id) {
@@ -28,7 +28,7 @@ angular.module('starter.controllers', [])
     // Create User in Database with $scope.userData
     // created user callback
     // navigate to stats page with template
-    $scope.goToDash();
+    $scope.goToStatus();
   };
 })
 
