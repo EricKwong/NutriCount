@@ -36,7 +36,7 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['browserify'], function() {
   gulp.watch(paths.sass, ['sass']);
   gulp.watch(['./www/js/*.js', '!./www/js/bundled.js'], ['browserify']);
 });
