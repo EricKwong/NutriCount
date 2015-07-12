@@ -33,28 +33,25 @@ angular.module('starter.controllers', [])
 
   if (!$scope.userData) {
     $state.go('login');
+    return;
   }
 
   $scope.updateDiet = function(id) {
     $scope.userData.dietId = id;
     $scope.userData.id = shortId.generate();
 
-    var query = '<document>' +
-                  cps.Term($scope.userData.username, 'username') +
-                  cps.Term($scope.userData.dietId, 'dietId') +
-                  cps.Term($scope.userData.id, 'id') +
-                '</document>';
+    User.setInfo($scope.userData);
 
     request
       .post('https://api-us.clusterpoint.com/100785/NutriCount-Users/_insert.json')
-      .send({ query: query })
+      .send({ id: $scope.userData.id, username: $scope.userData.username, dietId: $scope.userData.dietId })
       .set('Authorization', 'Basic ' + btoa(config.user + ':' + config.password))
       .end(function (err, res) {
         if (res.ok) {
           if (res.body) {
-            console.log(res.body.documents);
-          } else {
-            console.log(res.body.documents);
+            console.log(res.body);
+            $state.go('tab.status');
+            return;
           }
         }
       });
@@ -66,8 +63,15 @@ angular.module('starter.controllers', [])
 
   if (!$scope.userData) {
     $state.go('login');
+    return;
   }
-  $scope.userNutrition;
+  $scope.userNutrition = {
+    calories: 0,
+    sugars: 0,
+    protein: 0,
+    totalFat: 0
+  };
+
   $scope.template = diets[$scope.userData.dietId].nutrition;
 
   var aggregation = 'sum(calories) as calories, ' +
@@ -82,7 +86,7 @@ angular.module('starter.controllers', [])
     .set('Authorization', 'Basic ' + btoa(config.user + ':' + config.password))
     .end(function (err, res) {
       if (res.ok) {
-        if (res.body.aggregate) {
+        if (res.body.aggregate[0].data[0]) {
           $scope.userNutrition = res.body.aggregate[0].data[0];
           $scope.$apply();
         }
