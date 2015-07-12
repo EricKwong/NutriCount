@@ -5,6 +5,16 @@ var shortId = require('shortid');
 var diets = require('../data/diets.json');
 var cps = require('cps-api');
 
+/* HP api */
+var OCR_API = 'https://api.idolondemand.com/1/api/sync/ocrdocument/v1';
+
+var auth = '4f0db58e-b602-4175-84e9-a1b1cbcc29ad';
+
+var postParams = {
+  apikey: auth,
+  url: 'http://www.moradaproduce.com/img/basket/nutrition-walnuts.jpg'
+};
+
 angular.module('starter.controllers', [])
 
 .controller('LoginCtrl', function($scope, $state, User) {
@@ -112,8 +122,22 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('CameraImageCtrl', function($scope, $ionicHistory, CameraImage) {
+.controller('CameraImageCtrl', function($scope, $ionicHistory, CameraImage, $ionicPopup) {
   $scope.cameraImage = CameraImage.getCameraImage();
+  // $scope.data;
+  request
+    .post(OCR_API)
+    .send(postParams)
+    .end(function (err, res) {
+      if (err) {
+        console.log('oopsy', err.response.text);
+        return;
+      }
+
+      var text = JSON.parse(res.text).text_block[0].text;
+      $ionicPopup.alert({ title: text, template: text });
+    });
+
   $scope.goBack = function() {
     $ionicHistory.goBack();
   };
