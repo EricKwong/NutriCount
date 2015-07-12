@@ -70,6 +70,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
+  .state('tab.image', {
+    url: '/image',
+    views: {
+      'tab-image': {
+        templateUrl: 'templates/tab-camera-image.html',
+        controller: 'CameraImageCtrl'
+      }
+    },
+    resolve: {
+      cameraImage: function(CameraImage) {
+        return CameraImage.getCameraImage();
+      }
+    }
+  })
+
   .state('nutrition', {
     url: '/nutrition',
     templateUrl: 'templates/nutrition.html',

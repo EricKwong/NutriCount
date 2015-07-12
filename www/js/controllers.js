@@ -32,7 +32,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('CameraCtrl', function($scope, Camera) {
+.controller('CameraCtrl', function($scope, $state, Camera, CameraImage) {
   $scope.getPhoto = function() {
     console.log('Getting camera');
     Camera.getPicture({
@@ -42,11 +42,16 @@ angular.module('starter.controllers', [])
       saveToPhotoAlbum: false
     }).then(function(imageURI) {
       console.log(imageURI);
-      $scope.lastPhoto = imageURI;
+      CameraImage.setCameraImage(imageURI);
+      $state.go('tab.image');
     }, function(err) {
       console.err(err);
     });
   };
+})
+
+.controller('CameraImageCtrl', function($scope, cameraImage) {
+  $scope.cameraImage = cameraImage;
 })
 
 .controller('NutritionCtrl', function($scope) {

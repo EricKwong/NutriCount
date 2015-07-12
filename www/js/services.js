@@ -28,4 +28,16 @@ angular.module('starter.services', [])
       username = name;
     }
   }
+})
+
+.factory('CameraImage', function($q) {
+  var cameraImage;
+  return {
+    getCameraImage: function() {
+      return cameraImage;
+    },
+    setCameraImage: function(image) {
+      cameraImage = image;
+    }
+  }
 });
