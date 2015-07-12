@@ -1,7 +1,11 @@
 <ion-view view-title="Login">
   <ion-content>
-    <h1>Enter your Username</h1>
-    <input ng-model="username">
-    <a ng-click="checkUser(username)" class="button button-block button-primary">Continue</a>
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <input ng-model="username" type="text" placeholder="Username">
+      </label>
+    </div>
+    <a ng-click="checkUser(username)" class="button button-block button-positive">Continue</a>
   </ion-content>
 </ion-view>
+

@@ -16,5 +16,14 @@
       "protein": 300,
       "sugars": 100
     }
+  },
+  "3": {
+    "name": "lazy",
+    "nutrition": {
+      "calories": 1000,
+      "totalFat": 10,
+      "protein": 3,
+      "sugars": 10
+    }
   }
 }
