@@ -123,7 +123,7 @@ angular.module('starter.controllers', [])
   // $scope.data;
   var postParams = {
     apikey: auth,
-    url: $scope.cameraImage;
+    url: $scope.cameraImage
   };
 
   request
