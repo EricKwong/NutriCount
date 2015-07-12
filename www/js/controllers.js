@@ -36,9 +36,9 @@ angular.module('starter.controllers', [])
   $scope.getPhoto = function() {
     console.log('Getting camera');
     Camera.getPicture({
-      quality: 75,
-      targetWidth: 320,
-      targetHeight: 320,
+      quality: 100,
+      targetWidth: 500,
+      targetHeight: 500,
       saveToPhotoAlbum: false
     }).then(function(imageURI) {
       console.log(imageURI);
@@ -47,4 +47,8 @@ angular.module('starter.controllers', [])
       console.err(err);
     });
   };
+})
+
+.controller('NutritionCtrl', function($scope) {
+
 });

@@ -65,13 +65,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
 
   .state('tab.camera', {
-      url: '/camera',
-      views: {
-        'tab-camera': {
-          templateUrl: 'templates/tab-camera.html',
-          controller: 'CameraCtrl'
-        }
+    url: '/camera',
+    views: {
+      'tab-camera': {
+        templateUrl: 'templates/tab-camera.html',
+        controller: 'CameraCtrl'
       }
+    }
+  })
+
+  .state('nutrition', {
+    url: '/nutrition',
+    templateUrl: 'templates/nutrition.html',
+    controller: 'NutritionCtrl',
+    resolve: {
+      nutrients: function() {
+        
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback
