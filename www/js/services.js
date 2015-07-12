@@ -26,8 +26,6 @@ angular.module('starter.services', [])
         return info;
       }
     }
-<<<<<<< HEAD
-  }
 })
 
 .factory('CameraImage', function($q) {
@@ -41,6 +39,3 @@ angular.module('starter.services', [])
     }
   }
 });
-=======
-  });
->>>>>>> 334c3718010a4325c8001d5bed8455070a6541e5
