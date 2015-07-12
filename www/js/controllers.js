@@ -89,8 +89,15 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('CameraImageCtrl', function($scope, CameraImage) {
+.controller('CameraImageCtrl', function($scope, $ionicHistory, CameraImage) {
   $scope.cameraImage = CameraImage.getCameraImage();
+  $scope.goBack = function() {
+    $ionicHistory.goBack();
+  };
+
+  $scope.submitImage = function() {
+    
+  };
 })
 
 .controller('NutritionCtrl', function($scope) {

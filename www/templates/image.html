@@ -6,9 +6,11 @@
       </div>
     </div>
     <ion-nav-bar>
-    <ion-nav-back-button class="button-clear">
-      <i class="ion-arrow-left-c"></i> Back
-    </ion-nav-back-button>
+    <ion-nav-buttons side="left">
+      <button class="button-clear" ng-click="goBack()">
+        <i class="ion-arrow-left-c"></i> Back
+      </button>
+    </ion-nav-buttons>
     <ion-nav-buttons side="right">
       <button class="button-clear" ng-click="submitImage()">
         <i class="icon ion-checkmark-round"></i>
