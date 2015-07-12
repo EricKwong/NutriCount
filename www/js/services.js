@@ -16,14 +16,14 @@ angular.module('starter.services', [])
     }
   }])
 
-  .factory('Username', function($q) {
-    var username;
+  .factory('User', function($q) {
+    var info;
     return {
-      getUsername: function() {
-        return username;
+      setInfo: function(obj) {
+        info = obj;
       },
-      setUsername: function(name) {
-        username = name;
+      getInfo: function() {
+        return info;
       }
     }
   });

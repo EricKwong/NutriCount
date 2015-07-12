@@ -37,17 +37,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .state('diet', {
     url: '/diet',
     templateUrl: 'templates/diet.html',
-    controller: 'DietCtrl',
-    resolve: {
-      username: function (Username) {
-        return Username.getUsername();
-      }
-    }
+    controller: 'DietCtrl'
   })
 
   .state('tab', {
     url: '/tab',
     abstract: true,
+    controller: 'StatusCtrl',
     templateUrl: 'templates/tabs.html'
   })
 

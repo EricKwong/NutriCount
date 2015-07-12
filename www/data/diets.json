@@ -1,0 +1,20 @@
+{
+  "1": {
+    "name": "normal",
+    "nutrition": {
+      "calories": 2000,
+      "totalFat": 100,
+      "protein": 200,
+      "sugars": 50
+    }
+  },
+  "2": {
+    "name": "active",
+    "nutrition": {
+      "calories": 4000,
+      "totalFat": 200,
+      "protein": 300,
+      "sugars": 100
+    }
+  }
+}
