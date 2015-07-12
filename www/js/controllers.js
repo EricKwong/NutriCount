@@ -42,7 +42,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('CameraCtrl', function($scope, $state, Camera, User, CameraImage) {
+.controller('StatusCtrl', function($scope, $state, User) {
   $scope.userData = User.getInfo();
 
   if (!$scope.userData) {
@@ -81,16 +81,11 @@ angular.module('starter.controllers', [])
       saveToPhotoAlbum: false
     }).then(function(imageURI) {
       console.log(imageURI);
-      CameraImage.setCameraImage(imageURI);
-      $state.go('tab.image');
+      $scope.lastPhoto = imageURI;
     }, function(err) {
       console.err(err);
     });
   };
-})
-
-.controller('CameraImageCtrl', function($scope, cameraImage) {
-  $scope.cameraImage = cameraImage;
 })
 
 .controller('NutritionCtrl', function($scope) {
