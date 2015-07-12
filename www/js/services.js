@@ -26,7 +26,7 @@ angular.module('starter.services', [])
         return info;
       }
     }
-})
+  })
 
 .factory('CameraImage', function($q) {
   var cameraImage;
