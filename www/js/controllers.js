@@ -1,5 +1,6 @@
 var request = require('superagent');
 var config = require('../../conf.json');
+var shortId = require('shortid');
 
 var diets = require('../data/diets.json');
 var cps = require('cps-api');
@@ -19,6 +20,7 @@ angular.module('starter.controllers', [])
             User.setInfo(res.body.documents[0]);
             $state.go('tab.status');
           } else {
+            User.setInfo({ username: username });
             $state.go('diet');
           }
         }
@@ -29,16 +31,33 @@ angular.module('starter.controllers', [])
 .controller('DietCtrl', function($scope, $state, User) {
   $scope.userData = User.getInfo();
 
-  $scope.goToStatus = function() {
-    $state.go('tab.status');
-  };
+  if (!$scope.userData) {
+    $state.go('login');
+  }
 
   $scope.updateDiet = function(id) {
     $scope.userData.dietId = id;
-    // Create User in Database with $scope.userData
-    // created user callback
-    // navigate to stats page with template
-    $scope.goToStatus();
+    $scope.userData.id = shortId.generate();
+
+    var query = '<document>' +
+                  cps.Term($scope.userData.username, 'username') +
+                  cps.Term($scope.userData.dietId, 'dietId') +
+                  cps.Term($scope.userData.id, 'id') +
+                '</document>';
+
+    request
+      .post('https://api-us.clusterpoint.com/100785/NutriCount-Users/_insert.json')
+      .send({ query: query })
+      .set('Authorization', 'Basic ' + btoa(config.user + ':' + config.password))
+      .end(function (err, res) {
+        if (res.ok) {
+          if (res.body) {
+            console.log(res.body.documents);
+          } else {
+            console.log(res.body.documents);
+          }
+        }
+      });
   };
 })
 
