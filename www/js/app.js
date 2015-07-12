@@ -66,14 +66,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
-  .state('tab.image', {
+  .state('image', {
     url: '/image',
-    views: {
-      'tab-image': {
-        templateUrl: 'templates/tab-camera-image.html',
-        controller: 'CameraImageCtrl'
-      }
-    },
+    templateUrl: 'templates/image.html',
+    controller: 'CameraImageCtrl',
     resolve: {
       cameraImage: function(CameraImage) {
         return CameraImage.getCameraImage();

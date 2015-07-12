@@ -1,0 +1,19 @@
+<ion-view view-title="Photo">
+  <ion-content>
+    <div class="list card">
+      <div class="item item-image">
+        <img ng-src="{{cameraImage}}">
+      </div>
+    </div>
+    <ion-nav-bar>
+    <ion-nav-back-button class="button-clear">
+      <i class="ion-arrow-left-c"></i> Back
+    </ion-nav-back-button>
+    <ion-nav-buttons side="right">
+      <button class="button-clear" ng-click="submitImage()">
+        <i class="icon ion-checkmark-round"></i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  </ion-content>
+</ion-view>
