@@ -6,10 +6,19 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var browserify = require('gulp-browserify');
+var rename = require('gulp-rename');
 
 var paths = {
   sass: ['./scss/**/*.scss']
 };
+
+gulp.task('browserify', function() {
+  gulp.src('./www/js/app.js')
+    .pipe(browserify())
+    .pipe(rename('bundled.js'))
+    .pipe(gulp.dest('./www/js'));
+});
 
 gulp.task('default', ['sass']);
 
