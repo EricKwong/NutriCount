@@ -1,32 +1,32 @@
 angular.module('starter.services', [])
-
-.factory('Camera', ['$q', function($q) {
- 
-  return {
-    getPicture: function(options) {
-      var q = $q.defer();
-      
-      navigator.camera.getPicture(function(result) {
-        // Do any magic you need
-        q.resolve(result);
-      }, function(err) {
-        q.reject(err);
-      }, options);
-      
-      return q.promise;
+  .factory('Camera', ['$q', function($q) {
+    return {
+      getPicture: function(options) {
+        var q = $q.defer();
+        
+        navigator.camera.getPicture(function(result) {
+          // Do any magic you need
+          q.resolve(result);
+        }, function(err) {
+          q.reject(err);
+        }, options);
+        
+        return q.promise;
+      }
     }
-  }
-}])
+  }])
 
-.factory('Username', function($q) {
-  var username;
-  return {
-    getUsername: function() {
-      return username;
-    },
-    setUsername: function(name) {
-      username = name;
+  .factory('User', function($q) {
+    var info;
+    return {
+      setInfo: function(obj) {
+        info = obj;
+      },
+      getInfo: function() {
+        return info;
+      }
     }
+<<<<<<< HEAD
   }
 })
 
@@ -41,3 +41,6 @@ angular.module('starter.services', [])
     }
   }
 });
+=======
+  });
+>>>>>>> 334c3718010a4325c8001d5bed8455070a6541e5
