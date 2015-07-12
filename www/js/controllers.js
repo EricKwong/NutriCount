@@ -10,11 +10,6 @@ var OCR_API = 'https://api.idolondemand.com/1/api/sync/ocrdocument/v1';
 
 var auth = '4f0db58e-b602-4175-84e9-a1b1cbcc29ad';
 
-var postParams = {
-  apikey: auth,
-  url: 'http://www.moradaproduce.com/img/basket/nutrition-walnuts.jpg'
-};
-
 angular.module('starter.controllers', [])
 
 .controller('LoginCtrl', function($scope, $state, User) {
@@ -124,7 +119,13 @@ angular.module('starter.controllers', [])
 
 .controller('CameraImageCtrl', function($scope, $ionicHistory, CameraImage, $ionicPopup) {
   $scope.cameraImage = CameraImage.getCameraImage();
+
   // $scope.data;
+  var postParams = {
+    apikey: auth,
+    url: $scope.cameraImage;
+  };
+
   request
     .post(OCR_API)
     .send(postParams)
